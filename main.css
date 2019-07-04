@@ -20,4 +20,20 @@ h1 {
       
   }
   
+  form {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      border: solid;
+      border-color: 5px black;
+      padding: 100px;
+      margin: 50px;
+  }
+
+  .nextQuestion {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+  }
+
   
