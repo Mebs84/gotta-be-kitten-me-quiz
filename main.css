@@ -1,0 +1,8 @@
+h1 {
+    display: flexbox;
+    text-align: center;
+    border-style: solid;
+    border-color: 5px black; 
+    padding: 15px;
+    
+}
