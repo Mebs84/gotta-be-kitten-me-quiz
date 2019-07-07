@@ -8,6 +8,9 @@
     <meta name="description" content="Quiz your knowledge about cats">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans">
     <link href="main.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    
 
 </head>
 
@@ -19,7 +22,6 @@
             " />
             </div>
     </header>
-    <main>
         <form role="form" action="/quiz" class="quiz">
           <section class="question">
               <ul>
@@ -28,11 +30,58 @@
               </ul>
           </section>
           <div class="buttonStart">          
-              <button type="button"><span>Start Quiz</span></button>
-          
+                <button type="button" class="startButton">Pounce On In</button>
+          </div>
 
+          <p>1.Kittens are unable to retract their claws until they are __ weeks of age.<br>
+            <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age.
+            value="6 weeks">6 weeks<br>
+            <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age."
+             value="1 week">1 week<br>
+             <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age."
+             value="1 week">4 weeks<br>
+             <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age."
+             value="1 week">8 weeks<br>
+           </p>
+
+           <p>2.All kittens are born with ___ color eyes.<br>
+            <input type="radio" name="2.All kittens are born with ___ color eyes."
+            value="Blue">Blue<br>
+            <input type="radio" name="2.All kittens are born with ___ color eyes."
+             value="Green">Green<br>
+             <input type="radio" name="2.All kittens are born with ___ color eyes."
+             value="Brown">Brown<br>
+             <input type="radio" name="2.All kittens are born with ___ color eyes."
+             value="Purple">Purple<br>
+           </p>
+
+           <p>3.Their sense of ____ is one of the best on the planet.<br>
+            <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
+            value="Smell">Smell<br>
+            <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
+             value="Hearing">Hearing<br>
+             <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
+             value="Sight">Sight<br>
+             <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
+             value="Taste">Taste<br>
+           </p>
+
+           <p>4.Kittens are fully weaned at ___ weeks old.
+                <br>
+            <input type="radio" name="4.Kittens are fully weaned at ___ weeks old."
+            value="12">12<br>
+            <input type="radio" name="4.Kittens are fully weaned at ___ weeks old."
+             value="2">2<br>
+             <input type="radio" name="4.Kittens are fully weaned at ___ weeks old."
+             value="8">8<br>
+             <input type="radio" name="4.Kittens are fully weaned at ___ weeks old."
+             value="4">4<br>
+           </p>
+                
         </form>
-    </main>
+    
+      
+    
 </body>
 
 </html>
