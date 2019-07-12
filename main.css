@@ -36,12 +36,17 @@ h1 {
        padding: 10px;
    }
 
-  .buttonStart {
-      justify-content: center;
+  .pounceStart {
+      display: block;
       text-align: center;
-      
-  }
+      border: green 2px solid;
+      margin: auto;
+      background: white;
+      margin-left: 150px;
+      margin-right: 150px;
+    }
 
+    
   p {
       border: solid blue 5px;
       margin-right: 10px;

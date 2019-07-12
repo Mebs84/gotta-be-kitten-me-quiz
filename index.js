@@ -126,34 +126,86 @@ let score = 0;
 
 
 function startQuizButton() {
+      console.log($("div.buttonStart").length);
     //when the start quiz button is clicked
     //will begin questions
-    $(".buttonStart").on("click", "button.startButton", function() {
-        console.log('begin');
-    });
+    $("div.buttonStart").on("click", function() {
+      $("div.buttonStart").remove();
+      $(".answersForm").text(1); 
+      $(".currentQuestion").css("display", "block");
+     });  
 }
 
+$(document).ready(function(){
 startQuizButton();
+});
 
-function renderCurrentQuestionToHTML() {
-    // look at the data for the current question
-    // and render it to HTML
-    let q = QUIZ[currentQuestion];
+function initiateQuestion() {
+    // when the page is loaded the next question
+    // will render in HTML
+ if (currentQuestion < QUIZ.length) {
+     return `<div class='question_text-${currentQuestion}">
+     <section>${QUIZ[currentQuestion].question_text}</section>
+     <form>
+     <fieldset>
+     <label class="optionsForAnswer">
+     <input type="radio" value="${QUIZ
+    [currentQuestion].answers[0]}" name="answer" required>
+    <span>${QUIZ[currentQuestion].answers[0]}</span>
+    </label>
+    <label class="optionsForAnswer">
+     <input type="radio" value="${QUIZ
+    [currentQuestion].answers[1]}" name="answer" required>
+    <span>${QUIZ[currentQuestion].answers[1]}</span>
+    </label>
+    <label class="optionsForAnswer">
+     <input type="radio" value="${QUIZ
+    [currentQuestion].answers[2]}" name="answer" required>
+    <span>${QUIZ[currentQuestion].answers[2]}</span>
+    </label>
+    <label class="optionsForAnswer">
+     <input type="radio" value="${QUIZ
+    [currentQuestion].answers[3]}" name="answer" required>
+    <span>${QUIZ[currentQuestion].answers[3]}</span>
+    </label>
+    </fieldset>
+    </form>
+    </div>`;
+     } else {
+         renderQuestionResults();
+         $(".currentQuestion").text(10)
+     }
 }
+ 
+initiateQuestion();
 
-function goForwardOnePage() {
-    // increment forward one page
-    currentQuestion++;
-}
 
-function checkUserAnswer() {
-    // check if the user's answers
-    // matches the correct answer
+// function renderCurrentQuestionToHTML() {
+//     // look at the data for the current question
+//     // and render it to HTML
+//    // let q = QUIZ[currentQuestion];
+//    $(".answersForm").html(produceQuestion());   
+// }
 
-}
+// function goForwardOnePage() {
+//     // increment forward one page
+//     currentQuestion++;
+// }
 
-function updateScore() {
-    // increment the score based on
-    // correct or incorrect answers
+// function checkUserAnswer() {
+//     // check if the user's answers
+//     // matches the correct answer
+//     // for(let i=0; i<QUIZ.length; i++){
+//     //     answers= [];
+    
+//     //     for (correctAnswer[i].answers) {
+//     //         answers.push()
+//     //     }
+//     //     }
+// }
 
-}
+// function updateScore() {
+//     // increment the score based on
+//     // correct or incorrect answers
+
+// // }
