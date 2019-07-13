@@ -180,12 +180,12 @@ function initiateQuestion() {
 initiateQuestion();
 
 
-// function renderCurrentQuestionToHTML() {
-//     // look at the data for the current question
-//     // and render it to HTML
-//    // let q = QUIZ[currentQuestion];
-//    $(".answersForm").html(produceQuestion());   
-// }
+function renderCurrentQuestionToHTML() {
+    // look at the data for the current question
+    // and render it to HTML
+   // let q = QUIZ[currentQuestion];
+   $(".answersForm").html(produceQuestion());   
+}
 
 function goForwardOnePage() {
     // increment forward one page
@@ -193,20 +193,20 @@ function goForwardOnePage() {
 }
 goForwardOnePage();
 
-// function checkUserAnswer() {
-//     // check if the user's answers
-//     // matches the correct answer
-//     // for(let i=0; i<QUIZ.length; i++){
-//     //     answers= [];
+function checkUserAnswer() {
+    // check if the user's answers
+    // matches the correct answer
+    // for(let i=0; i<QUIZ.length; i++){
+    //     answers= [];
     
-//     //     for (correctAnswer[i].answers) {
-//     //         answers.push()
-//     //     }
-//     //     }
-// }
+    //     for (correctAnswer[i].answers) {
+    //         answers.push()
+    //     }
+    //     }
+}
 
 // function updateScore() {
-//     // increment the score based on
-//     // correct or incorrect answers
+//      increment the score based on
+//     correct or incorrect answers
 
-// // }
+//  }
