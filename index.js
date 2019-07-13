@@ -187,10 +187,11 @@ initiateQuestion();
 //    $(".answersForm").html(produceQuestion());   
 // }
 
-// function goForwardOnePage() {
-//     // increment forward one page
-//     currentQuestion++;
-// }
+function goForwardOnePage() {
+    // increment forward one page
+    currentQuestion++;
+}
+goForwardOnePage();
 
 // function checkUserAnswer() {
 //     // check if the user's answers
