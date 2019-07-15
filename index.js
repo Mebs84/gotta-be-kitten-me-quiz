@@ -12,7 +12,7 @@ let QUIZ = [
           alt:"kitten mewing"
     },
     {
-        quesion_text: "All kittens are born with ___ color eyes.",
+        question_text: "All kittens are born with ___ color eyes.",
         answers: [
             "Blue",
             "Green",
@@ -72,7 +72,7 @@ let QUIZ = [
         alt: "kitten mewing"
     },
     {
-        questions_text: "A group of cats is called a ___.",
+        question_text: "A group of cats is called a ___.",
         answers: [
             "Murder",
             "Clowder",
@@ -126,27 +126,42 @@ let score = 0;
 
 
 function startQuizButton() {
-      console.log($("div.buttonStart").length);
+     // console.log($("div.buttonStart").length);
     //when the start quiz button is clicked
     //will begin questions
-    $("div.buttonStart").on("click", function() {
-      $("div.buttonStart").remove();
-      $(".answersForm").text(1); 
-      $(".currentQuestion").css("display", "block");
+    $(document).ready();
+   
+    $("#quizKittens").on("submit", function(event) {
+        event.preventDefault();
+      $("button.pounceStart").remove();
+     $("#questionsContent").append(initiateQuestion());
+      
      });  
 }
-
+function buttonSubmitQuestion() {
+    //when answerSubmissionForm is pressed
+    //submit answer
+    $("#answerSubmissionForm").on("submit", function(event) {
+        event.preventDefault();
+     
+      
+      $("#questionsContent").append(initiateQuestion());
+      
+     });  
+}
 $(document).ready(function(){
 startQuizButton();
 });
+
+
 
 function initiateQuestion() {
     // when the page is loaded the next question
     // will render in HTML
  if (currentQuestion < QUIZ.length) {
-     return `<div class='question_text-${currentQuestion}">
+     return `<div class="question_text-${currentQuestion}">
      <section>${QUIZ[currentQuestion].question_text}</section>
-     <form>
+     <form id="answerSubmissionForm">
      <fieldset>
      <label class="optionsForAnswer">
      <input type="radio" value="${QUIZ
@@ -168,6 +183,7 @@ function initiateQuestion() {
     [currentQuestion].answers[3]}" name="answer" required>
     <span>${QUIZ[currentQuestion].answers[3]}</span>
     </label>
+    <button type="submit" class="buttonSubmitQuestion">Submit</button>
     </fieldset>
     </form>
     </div>`;
@@ -184,14 +200,14 @@ function renderCurrentQuestionToHTML() {
     // look at the data for the current question
     // and render it to HTML
    // let q = QUIZ[currentQuestion];
-   $(".answersForm").html(produceQuestion());   
+   $(".questionListForm").html(produceQuestion());   
 }
 
 function goForwardOnePage() {
     // increment forward one page
     currentQuestion++;
 }
-goForwardOnePage();
+
 
 function checkUserAnswer() {
     // check if the user's answers

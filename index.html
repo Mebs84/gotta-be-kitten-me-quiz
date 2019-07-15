@@ -8,8 +8,7 @@
     <meta name="description" content="Quiz your knowledge about cats">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans">
     <link href="main.css" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="index.js"></script>
+    
     
 
 </head>
@@ -22,7 +21,7 @@
             " />
             </div>
     </header>
-        <form role="form" action="/quiz" class="quizKittens">
+        
           <fieldset>
           <section class="question_text">
               <ul>
@@ -31,10 +30,19 @@
               </ul>
           </section>
           </fieldset>
-          <div class="buttonStart">          
-                <button type="button" class="pounceStart">Pounce On In</button>
+          <main role="main">
+              <form role="form" action="/quiz" id="quizKittens">
+            <div class="beginQuiz">
+              <h3>How much do you know about cats?
+              </h3>
+            </div>
+          
+          <!-- <div class="buttonStart">           -->
+            <div>
+                <button type="submit" class="pounceStart">Pounce On In</button>
           </div>
           <div class="answersForm"></div>
+          <div id="questionsContent"></div>
 
           <!-- <p>1.Kittens are unable to retract their claws until they are __ weeks of age.<br>
             <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age.
@@ -90,12 +98,14 @@
              <input type="radio" name="5.Male cats are called ____."
              value="Toms">Toms<br>
            </p> -->
-           <div class="buttonSubmitAnswer">Submit Answer</div>
+           <!-- <div class="buttonSubmitAnswer">Submit Answer</div> -->
                 
         </form>
     
       
-    
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="index.js"></script> 
+      </main>
+   </body>
 
 </html>
