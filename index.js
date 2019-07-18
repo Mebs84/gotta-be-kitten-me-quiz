@@ -1,6 +1,6 @@
 let QUIZ = [
     {
-        question_text:"Kittens are unable to retract their claws until they ____ weeks of age.",
+        question_text:"Kittens are unable to retract their claws until they are ____ weeks of age.",
         answers: [
             "6 weeks",
             "1 week",
@@ -124,40 +124,9 @@ let QUIZ = [
 let currentQuestion = 0;
 let score = 0;
 
-
-function startQuizButton() {
-     // console.log($("div.buttonStart").length);
-    //when the start quiz button is clicked
-    //will begin questions
-    $(document).ready();
-   
-    $("#quizKittens").on("submit", function(event) {
-        event.preventDefault();
-      $("button.pounceStart").remove();
-     $("#questionsContent").append(initiateQuestion());
-      
-     });  
-}
-function buttonSubmitQuestion() {
-    //when answerSubmissionForm is pressed
-    //submit answer
-    $("#answerSubmissionForm").on("submit", function(event) {
-        event.preventDefault();
-     
-      
-      $("#questionsContent").append(initiateQuestion());
-      
-     });  
-}
-$(document).ready(function(){
-startQuizButton();
-});
-
-
-
 function initiateQuestion() {
     // when the page is loaded the next question
-    // will render in HTML
+    // will render in HTML in this format
  if (currentQuestion < QUIZ.length) {
      return `<div class="question_text-${currentQuestion}">
      <section>${QUIZ[currentQuestion].question_text}</section>
@@ -188,24 +157,68 @@ function initiateQuestion() {
     </form>
     </div>`;
      } else {
-         renderQuestionResults();
+         //renderQuestionResults();
          $(".currentQuestion").text(10)
      }
 }
  
-initiateQuestion();
+function startQuizButton() {
+    //when the start quiz button is clicked
+    //will begin questions
+    $(document).ready();
+    $("#quizKittens").on("submit", function(event) {
+        event.preventDefault();
+      $("button.pounceStart").remove();
+     $("#questionsContent").append(initiateQuestion());
+     $(".question_text").css("display","block");
+     $(".currentQuestion").text(1);
+     });  
+}
+
+function buttonSubmitQuestion() {
+    //when answerSubmissionForm is pressed
+    //submit answer
+    //Should iterate through each question one at a time
+    //Should not skip questions
+  
+    $("#answerSubmissionForm").on("submit", function(event) {
+    event.preventDefault();
+    console.log("go");
+    $("#questionsContent").append(initiateQuestion());
+    
+      });  
+}
+buttonSubmitQuestion();
+$(document).ready(function(){
+startQuizButton();
+});
+
+function renderNextButton() {
+    $(".main").on("click", ".next", function(event) {
+    updateQuestionNumber();
+    initiateQuestion();
+    })
+}
+
+
 
 
 function renderCurrentQuestionToHTML() {
     // look at the data for the current question
     // and render it to HTML
    // let q = QUIZ[currentQuestion];
-   $(".questionListForm").html(produceQuestion());   
+   $(".questionListForm").html(initiateQuestion());   
 }
 
-function goForwardOnePage() {
+function updateQuestionNumber() {
     // increment forward one page
+    //update question number
     currentQuestion++;
+    $(".currentQuestion").text(currentQuestion+1);
+}
+
+function showQuestion() {
+    
 }
 
 
