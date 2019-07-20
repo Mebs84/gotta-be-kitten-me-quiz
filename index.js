@@ -1,15 +1,15 @@
 let QUIZ = [
     {
-        question_text:"Kittens are unable to retract their claws until they are ____ weeks of age.",
+        question_text: "Kittens are unable to retract their claws until they are ____ weeks of age.",
         answers: [
             "6 weeks",
             "1 week",
             "4 weeks",
             "8 weeks"
         ],
-        correctAnswer:"4 weeks",
-         image: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjj8_LSsZ7jAhVECc0KHZKiBN8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.thehappycatsite.com%2Fwhen-do-cats-stop-growing%2F&psig=AOvVaw3JMXMjc4OC3fc3YA0b6Hmx&ust=1562437027702191",
-          alt:"kitten mewing"
+        correctAnswer: "4 weeks",
+        image: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjj8_LSsZ7jAhVECc0KHZKiBN8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.thehappycatsite.com%2Fwhen-do-cats-stop-growing%2F&psig=AOvVaw3JMXMjc4OC3fc3YA0b6Hmx&ust=1562437027702191",
+        alt: "kitten mewing"
     },
     {
         question_text: "All kittens are born with ___ color eyes.",
@@ -21,7 +21,7 @@ let QUIZ = [
         ],
         correctAnswer: "Blue",
         image: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjj8_LSsZ7jAhVECc0KHZKiBN8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.thehappycatsite.com%2Fwhen-do-cats-stop-growing%2F&psig=AOvVaw3JMXMjc4OC3fc3YA0b6Hmx&ust=1562437027702191",
-         alt: "kitten mewing"
+        alt: "kitten mewing"
     },
     {
         question_text: "Cats sense of ___ is one of the best in the world.",
@@ -47,7 +47,7 @@ let QUIZ = [
         image: "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjj8_LSsZ7jAhVECc0KHZKiBN8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.thehappycatsite.com%2Fwhen-do-cats-stop-growing%2F&psig=AOvVaw3JMXMjc4OC3fc3YA0b6Hmx&ust=1562437027702191",
         alt: "kitten mewing"
     },
-    { 
+    {
         question_text: "Male cats are called ___.",
         answers: [
             "Billies",
@@ -127,52 +127,51 @@ let score = 0;
 function initiateQuestion() {
     // when the page is loaded the next question
     // will render in HTML in this format
- if (currentQuestion < QUIZ.length) {
-     return `<div class="question_text-${currentQuestion}">
+    if (currentQuestion < QUIZ.length) {
+        return `<div class="question_text-${currentQuestion}">
      <section>${QUIZ[currentQuestion].question_text}</section>
      <form id="answerSubmissionForm">
      <fieldset>
      <label class="optionsForAnswer">
      <input type="radio" value="${QUIZ
-    [currentQuestion].answers[0]}" name="answer" required>
+            [currentQuestion].answers[0]}" name="answer" required>
     <span>${QUIZ[currentQuestion].answers[0]}</span>
     </label>
     <label class="optionsForAnswer">
      <input type="radio" value="${QUIZ
-    [currentQuestion].answers[1]}" name="answer" required>
+            [currentQuestion].answers[1]}" name="answer" required>
     <span>${QUIZ[currentQuestion].answers[1]}</span>
     </label>
     <label class="optionsForAnswer">
      <input type="radio" value="${QUIZ
-    [currentQuestion].answers[2]}" name="answer" required>
+            [currentQuestion].answers[2]}" name="answer" required>
     <span>${QUIZ[currentQuestion].answers[2]}</span>
     </label>
     <label class="optionsForAnswer">
      <input type="radio" value="${QUIZ
-    [currentQuestion].answers[3]}" name="answer" required>
+            [currentQuestion].answers[3]}" name="answer" required>
     <span>${QUIZ[currentQuestion].answers[3]}</span>
     </label>
     <button type="submit" class="buttonSubmitQuestion">Submit</button>
     </fieldset>
     </form>
     </div>`;
-     } else {
-         //renderQuestionResults();
-         $(".currentQuestion").text(10)
-     }
+    } else {
+        //renderQuestionResults();
+        $(".currentQuestion").text(10)
+    }
 }
- 
+
 function startQuizButton() {
     //when the start quiz button is clicked
     //will begin questions
-    $(document).ready();
-    $("#quizKittens").on("submit", function(event) {
+    $("#quizKittens").on("submit", function (event) {
         event.preventDefault();
-      $("button.pounceStart").remove();
-     $("#questionsContent").append(initiateQuestion());
-     $(".question_text").css("display","block");
-     $(".currentQuestion").text(1);
-     });  
+        $("button.pounceStart").remove();
+        $("#questionsContent").append(initiateQuestion());
+        $(".question_text").css("display", "block");
+        $(".currentQuestion").text(1);
+    });
 }
 
 function buttonSubmitQuestion() {
@@ -180,46 +179,57 @@ function buttonSubmitQuestion() {
     //submit answer
     //Should iterate through each question one at a time
     //Should not skip questions
-  
-    $("#answerSubmissionForm").on("submit", function(event) {
-    event.preventDefault();
-    console.log("go");
-    $("#questionsContent").append(initiateQuestion());
-    
-      });  
+
+    $("#questionsContent").on("submit", "#answerSubmissionForm", function (event) {
+        event.preventDefault();
+        console.log("hi");
+
+        updateQuestionNumber();
+        $("#questionsContent").empty();
+        $("#questionsContent").append(`<div class="correctFeedback">
+        <div class="icon">
+        <img src="${QUIZ[currentQuestion].image}" 
+        alt="${QUIZ[currentQuestion].alt}"/>
+        </div>
+        <p><b>You got it wrong</b><br
+        >the correct answer is <span>"blablabla"</span></p>
+        <button type=button id="nextButton">Next</button></div>`);
+        //  $("#questionsContent").append(initiateQuestion());
+    });
 }
-buttonSubmitQuestion();
-$(document).ready(function(){
-startQuizButton();
+
+$(document).ready(function () {
+    startQuizButton();
+    buttonSubmitQuestion();
 });
 
-function renderNextButton() {
-    $(".main").on("click", ".next", function(event) {
-    updateQuestionNumber();
-    initiateQuestion();
-    })
-}
+// function renderNextButton() {
+//     $(".main").on("click", ".next", function (event) {
+//         updateQuestionNumber();
+//         initiateQuestion();
+//     })
+// }
 
 
 
 
-function renderCurrentQuestionToHTML() {
-    // look at the data for the current question
-    // and render it to HTML
-   // let q = QUIZ[currentQuestion];
-   $(".questionListForm").html(initiateQuestion());   
-}
+// function renderCurrentQuestionToHTML() {
+//     // look at the data for the current question
+//     // and render it to HTML
+//     // let q = QUIZ[currentQuestion];
+//     $(".questionListForm").html(initiateQuestion());
+// }
 
 function updateQuestionNumber() {
     // increment forward one page
     //update question number
     currentQuestion++;
-    $(".currentQuestion").text(currentQuestion+1);
+    $(".currentQuestion").text(currentQuestion + 1);
 }
 
-function showQuestion() {
-    
-}
+// function showQuestion() {
+
+// }
 
 
 function checkUserAnswer() {
@@ -227,7 +237,7 @@ function checkUserAnswer() {
     // matches the correct answer
     // for(let i=0; i<QUIZ.length; i++){
     //     answers= [];
-    
+
     //     for (correctAnswer[i].answers) {
     //         answers.push()
     //     }
