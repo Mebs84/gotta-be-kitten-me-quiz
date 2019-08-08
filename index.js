@@ -121,57 +121,37 @@ let QUIZ = [
     },
 ];
 
-let currentQuestion = 0;
-let score = 0;
+let currentQuestionIndex = 0;
+let numCorrect = 0;
+let numIncorrect = 0;
 
-function initiateQuestion() {
-    // when the page is loaded the next question
-    // will render in HTML in this format
-    if (currentQuestion < QUIZ.length) {
-        return `<div class="question_text-${currentQuestion}">
-     <section>${QUIZ[currentQuestion].question_text}</section>
-     <form id="answerSubmissionForm">
-     <fieldset>
-     <label class="optionsForAnswer">
-     <input type="radio" value="${QUIZ
-            [currentQuestion].answers[0]}" name="answer" required>
-    <span>${QUIZ[currentQuestion].answers[0]}</span>
-    </label>
-    <label class="optionsForAnswer">
-     <input type="radio" value="${QUIZ
-            [currentQuestion].answers[1]}" name="answer" required>
-    <span>${QUIZ[currentQuestion].answers[1]}</span>
-    </label>
-    <label class="optionsForAnswer">
-     <input type="radio" value="${QUIZ
-            [currentQuestion].answers[2]}" name="answer" required>
-    <span>${QUIZ[currentQuestion].answers[2]}</span>
-    </label>
-    <label class="optionsForAnswer">
-     <input type="radio" value="${QUIZ
-            [currentQuestion].answers[3]}" name="answer" required>
-    <span>${QUIZ[currentQuestion].answers[3]}</span>
-    </label>
-    <button type="submit" class="buttonSubmitQuestion">Submit</button>
-    </fieldset>
-    </form>
-    </div>`;
-    } else {
-        //renderQuestionResults();
-        $(".currentQuestion").text(10)
-    }
-}
 
 function startQuizButton() {
     //when the start quiz button is clicked
     //will begin questions
     $("#quizKittens").on("submit", function (event) {
         event.preventDefault();
-        $("button.pounceStart").remove();
-        $("#questionsContent").append(initiateQuestion());
-        $(".question_text").css("display", "block");
+        $("button.pounceStart").toggleClass("hidden");
+        $("#questionsContent").toggleClass("hidden");
         $(".currentQuestion").text(1);
+        renderNextQuestion();
     });
+}
+
+function renderNextQuestion() {
+    let currentQuestion = QUIZ[currentQuestionIndex]
+
+    $("#questionHeader").text(currentQuestion.question_text);
+
+    $("#option1 > span").text(currentQuestion.answers[0]);
+    $("#option2 > span").text(currentQuestion.answers[1]);
+    $("#option3 > span").text(currentQuestion.answers[2]);
+    $("#option4 > span").text(currentQuestion.answers[3]);
+
+    $("#option1 > input").val(currentQuestion.answers[0]);
+    $("#option2 > input").val(currentQuestion.answers[1]);
+    $("#option3 > input").val(currentQuestion.answers[2]);
+    $("#option4 > input").val(currentQuestion.answers[3]);
 }
 
 function buttonSubmitQuestion() {
@@ -180,72 +160,96 @@ function buttonSubmitQuestion() {
     //Should iterate through each question one at a time
     //Should not skip questions
 
-    $("#questionsContent").on("submit", "#answerSubmissionForm", function (event) {
+    $("#answerSubmissionForm").on("submit", function (event) {
         event.preventDefault();
-        console.log("hi");
+        $("#questionsContent").toggleClass("hidden");
+        $("#answerFeedbackAlert").toggleClass("hidden");
+         submittedQuestionValues()
+        
+    })
+}
 
-        updateQuestionNumber();
-        $("#questionsContent").empty();
-        $("#questionsContent").append(`<div class="correctFeedback">
-        <div class="icon">
-        <img src="${QUIZ[currentQuestion].image}" 
-        alt="${QUIZ[currentQuestion].alt}"/>
-        </div>
-        <p><b>You got it wrong</b><br
-        >the correct answer is <span>"blablabla"</span></p>
-        <button type=button id="nextButton">Next</button></div>`);
-        //  $("#questionsContent").append(initiateQuestion());
+function submittedQuestionValues(){
+    let submittedAnswer = $("input[name=answer]:checked", "#answerSubmissionForm").val();
+
+        let correctAnswer = QUIZ[currentQuestionIndex].correctAnswer
+        if (submittedAnswer === correctAnswer) {
+            $("#answerCorrectAlert").toggleClass("hidden");
+            numCorrect++;
+            $("#numCorrect").text(numCorrect);
+        } else {
+            $("#answerIncorrectAlert").toggleClass("hidden");
+            $("#correctAnswerHere").text(correctAnswer);
+            numIncorrect++;
+            $("#numIncorrect").text(numIncorrect);
+        }
+}
+function setupNextButtonForm() {
+    $("#nextQuestionForm").on("submit", function (event) {
+        event.preventDefault();
+
+        $("#answerFeedbackAlert").toggleClass("hidden");
+
+        if (currentQuestionIndex === QUIZ.length - 1) {
+            $("#totalEndScore").toggleClass("hidden");
+            $("#totalScoreNum").text(numCorrect);
+            console.log("go");
+        } else {
+            $("#questionsContent").toggleClass("hidden");
+            updateQuestionNumber();
+            resetQuestionState();
+            renderNextQuestion();
+        }
     });
+}
+
+function resetQuestionState() {
+    $("#answerCorrectAlert").addClass("hidden");
+    $("#answerIncorrectAlert").addClass("hidden");
+    resetRadioButtons(); 
+}
+
+function resetRadioButtons(){
+    $("#option1 > input").prop("checked", false);
+    $("#option2 > input").prop("checked", false);
+    $("#option3 > input").prop("checked", false);
+    $("#option4 > input").prop("checked", false);
+}
+
+
+
+function updateQuestionNumber() {
+    // increment forward one page
+    //update question number
+    currentQuestionIndex++;
+    $(".currentQuestion").text(currentQuestionIndex + 1);
+}
+
+function quizRestartSetup() {
+    $("#quizRestartForm").on("submit", function (event) {
+        event.preventDefault();
+
+        $("#totalEndScore").toggleClass("hidden");
+
+        $("button.pounceStart").toggleClass("hidden");
+
+        numCorrect = 0;
+        $("#numCorrect").text(numCorrect);
+        numIncorrect = 0;
+        $("#numIncorrect").text(numIncorrect);
+        currentQuestionIndex = 0;
+        $(".currentQuestion").text(currentQuestionIndex);
+
+        resetQuestionState();
+    });
+
 }
 
 $(document).ready(function () {
     startQuizButton();
     buttonSubmitQuestion();
+    setupNextButtonForm();
+    quizRestartSetup();
 });
 
-// function renderNextButton() {
-//     $(".main").on("click", ".next", function (event) {
-//         updateQuestionNumber();
-//         initiateQuestion();
-//     })
-// }
 
-
-
-
-// function renderCurrentQuestionToHTML() {
-//     // look at the data for the current question
-//     // and render it to HTML
-//     // let q = QUIZ[currentQuestion];
-//     $(".questionListForm").html(initiateQuestion());
-// }
-
-function updateQuestionNumber() {
-    // increment forward one page
-    //update question number
-    currentQuestion++;
-    $(".currentQuestion").text(currentQuestion + 1);
-}
-
-// function showQuestion() {
-
-// }
-
-
-function checkUserAnswer() {
-    // check if the user's answers
-    // matches the correct answer
-    // for(let i=0; i<QUIZ.length; i++){
-    //     answers= [];
-
-    //     for (correctAnswer[i].answers) {
-    //         answers.push()
-    //     }
-    //     }
-}
-
-// function updateScore() {
-//      increment the score based on
-//     correct or incorrect answers
-
-//  }

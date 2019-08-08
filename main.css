@@ -1,15 +1,40 @@
 * {
     box-sizing: border-box;
     font-family: 'PT Sans', sans-serif;
-  }
+}
+
+
+fieldset {
+    border: 0;
+}
+
 
 h1 {
-    font-family: 'Spectral', serif;
+    font-family: "Sans-serif" "Arial";
+    font-size: 25px;
     text-align: center;
+    color: white;
+  }
+
+  h2{
+    font-size: 20px;
+    color: white;
+    justify-content: center;
+  }
+
+  p {
+      text-align: center;
+      border: solid white;
+      margin-left: 100px;
+      margin-right: 100px;
+      padding: 20px;
+      font-size: 20px;
+      
   }
 
   .subtitle {
       text-align: center;
+      
   }
  
   .image-kitten {
@@ -17,6 +42,21 @@ h1 {
       justify-content: center ;
       align-content: center;
       
+  }
+
+  .scoreboard {
+      justify-content: center;
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      margin-left: 150px;
+      margin-right: 150px;
+   }
+  
+  ul {
+      list-style: none;
+      border: solid white;
+      padding: 10px;
   }
   
   form {
@@ -27,46 +67,78 @@ h1 {
       flex-wrap: wrap;
    }
 
-   .question {
+    #answerSubmissionForm {
+        justify-content: center;
+        font-size: 25px;
+        margin-top: 15px;
+    }
+
+   .question_text {
        justify-content: center;
        align-content: center;
        text-align: center;
-       border: solid black 2px;
+       /* font-size: bold 20px; */
        margin: 10px;
-       padding: 10px;
    }
 
   .pounceStart {
-      display: block;
       text-align: center;
-      border: green 2px solid;
-      margin: auto;
-      background: white;
-      margin-left: 150px;
-      margin-right: 150px;
+      border: rgb(70, 63, 63) 2px solid;
+      background: rgb(27, 24, 24);
+      font-size: 20px;
+      color: white;
+      margin-top: 15px;
+      padding: 15px;
     }
 
-    
-  p {
-      border: solid blue 5px;
-      margin-right: 10px;
-      text-align: left;
-      
-  }
+    .buttonSubmitQuestion {
+        justify-content: column-reverse; 
+        background: rgb(27, 24, 24);
+        border: rgb(70, 63, 63) 2px solid;
+        font-size: 20px;
+        color: white;  
+    }
 
-  .buttonSubmitAnswer {
-      border: solid purple 2px;
-      margin-left: 150px;
-      margin-right: 150px;
+    #answerIncorrectAlert {
+        /* justify-content: center;
+        align-content: center; */
+        font-size: 15 px;
+    }
+
+    .nextButton,.restartButton {
+        display: block;
+        margin-top: 10px;
+        background: rgb(27, 24, 24);
+        font-size: 20px;
+        color: white;
+
+    }
+
+  #questionHeader {
       text-align: center;
-      background-color: rgb(223, 235, 223);
-      
+      font-size: 25px; 
   }
 
-  /* .nextQuestion {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-  } */
+  #questionsContent {
+    border: solid rgb(129, 111, 111) 2px;
+    margin-top: 10px;
+  }
+   
+
+  .hidden {
+      display: none
+  }
+
+  html {
+    height: 100%;
+  }
+
+  @media screen and (min-width: 650px),(max-width:975px){
+  body {
+    background-image: linear-gradient(rgb(82, 73, 73),rgb(243, 210, 210));
+    background-size: 100% 100%;  
+    } 
+  }
+
 
   

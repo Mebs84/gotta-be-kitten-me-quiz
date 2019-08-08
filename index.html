@@ -2,110 +2,91 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Gotta Be Kitten Me Right Meow Quiz</title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Quiz your knowledge about cats">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans">
-    <link href="main.css" rel="stylesheet" type="text/css">
-    
-    
+  <meta charset="utf-8">
+  <title>Gotta Be Kitten Me Right Meow Quiz</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Quiz your knowledge about cats">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans">
+  <link href="main.css" rel="stylesheet" type="text/css">
+
+
 
 </head>
 
 <body>
-    <header class="title">
-        <h1>Gotta Be Kitten Me Right Meow Quiz</h1>
-        <h2 class="subtitle">Test your knowledge fur all things cat</h2>
-            <div class="image-kitten"><img class="mascot" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrE5vo4ns1LIsuUke_3RwykU09PTHZJD74Ditm_WrSYjTpGYUo
+  <header class="title">
+    <h1>Gotta Be Kitten Me Right Meow Quiz</h1>
+    <h2 class="subtitle">Test your knowledge fur all things cat</h2>
+    <div class="image-kitten"><img class="mascot" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrE5vo4ns1LIsuUke_3RwykU09PTHZJD74Ditm_WrSYjTpGYUo
             " />
-            </div>
-    </header>
+    </div>
+  </header>
+
+  <fieldset class="scoreboard">
+    <section class="question_text">
+      <ul>
+        <li>Questions:<span  class="currentQuestion">0</span>/10</li>
+        <li>Score: <span id="numCorrect">0 </span> Correct,<span id="numIncorrect">0</span> Incorrect</li>
+      </ul>
+    </section>
+  </fieldset>
+  <main role="main" class="questionContainer">
+    <form role="form" action="/quiz" id="quizKittens">
+      <div class="beginQuiz">
         
-          <fieldset class="scoreboard">
-          <section class="question_text">
-              <ul>
-                  <li>Question:<span class="currentQuestion">0</span>/10</li>
-                  <li>Score: <span class=:"score">0</span></li>
-              </ul>
-          </section>
-          </fieldset>
-          <main role="main">
-              <form role="form" action="/quiz" id="quizKittens">
-            <div class="beginQuiz">
-              <h3>How much do you know about cats?
-              </h3>
+      </div>
+
+      <div>
+        <button type="submit" class="pounceStart" tabindex="1">Pounce On In</button>
+      </div>
+    </form>
+
+      <div id="questionsContent" class="hidden">
+          <section id="questionHeader" id="currentQuestionData">placeholder question text</section>
+          <form id="answerSubmissionForm" >
+            <fieldset>
+              <label id="option1" class="optionsForAnswer" >
+                <input type="radio" tabindex="2" value="" name="answer" required>
+                <span></span>
+              </label>
+              <label id="option2" class="optionsForAnswer">
+                <input type="radio" value="" name="answer" required>
+                <span></span>
+              </label>
+              <label id="option3" class="optionsForAnswer">
+                <input type="radio" value="" name="answer" required>
+                <span></span>
+              </label>
+              <label id="option4" class="optionsForAnswer">
+                <input type="radio" value="" name="answer" required>
+                <span></span>
+              </label>
+               <button type="submit" class="buttonSubmitQuestion" tabindex="3">Submit</button>
+               
+            </fieldset>
+          </form>
+      </div>
+      <div id="answerFeedbackAlert" class="hidden">
+        <div id="answerCorrectAlert" class="hidden">
+        <p>That was purrfect!</p>
+        </div>
+        <div id="answerIncorrectAlert" class="hidden">
+            <p>Impurrfect!<br>The correct answer was:<span id="correctAnswerHere"></span></p>
+
             </div>
-          
-          <!-- <div class="buttonStart">           -->
-            <div>
-                <button type="submit" class="pounceStart">Pounce On In</button>
-          </div>
-          <div class="answersForm"></div>
-          <div id="questionsContent"></div>
-
-          <!-- <p>1.Kittens are unable to retract their claws until they are __ weeks of age.<br>
-            <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age.
-            value="6 weeks">6 weeks<br>
-            <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age."
-             value="1 week">1 week<br>
-             <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age."
-             value="1 week">4 weeks<br>
-             <input type="radio" name="1.Kittens are unable to retract their claws until they are __ weeks of age."
-             value="1 week">8 weeks<br>
-           </p> -->
-
-           <!-- <p>2.All kittens are born with ___ color eyes.<br>
-            <input type="radio" name="2.All kittens are born with ___ color eyes."
-            value="Blue">Blue<br>
-            <input type="radio" name="2.All kittens are born with ___ color eyes."
-             value="Green">Green<br>
-             <input type="radio" name="2.All kittens are born with ___ color eyes."
-             value="Brown">Brown<br>
-             <input type="radio" name="2.All kittens are born with ___ color eyes."
-             value="Purple">Purple<br>
-           </p> -->
-
-           <!-- <p>3.Their sense of ____ is one of the best on the planet.<br>
-            <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
-            value="Smell">Smell<br>
-            <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
-             value="Hearing">Hearing<br>
-             <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
-             value="Sight">Sight<br>
-             <input type="radio" name="3.Their sense of ____ is one of the best on the planet."
-             value="Taste">Taste<br>
-           </p>
-
-           <p>4.Kittens are fully weaned at ___ weeks old.<br>
-            <input type="radio" name="4.Kittens are fully weaned at ___ weeks old." -->
-            <!-- value="12">12<br>
-            <input type="radio" name="4.Kittens are fully weaned at ___ weeks old."
-             value="2">2<br>
-             <input type="radio" name="4.Kittens are fully weaned at ___ weeks old."
-             value="8">8<br>
-             <input type="radio" name="4.Kittens are fully weaned at ___ weeks old."
-             value="4">4<br>
-           </p>
-
-           <p>5.Male cats are called ____.<br>
-            <input type="radio" name="5.Male cats are called ____."
-            value="Billies">Billies<br>
-            <input type="radio" name="5.Male cats are called ____."
-             value="Freds">Freds<br>
-             <input type="radio" name="5.Male cats are called ____."
-             value="Jakes">Jakes<br>
-             <input type="radio" name="5.Male cats are called ____."
-             value="Toms">Toms<br>
-           </p> -->
-           <!-- <div class="buttonSubmitAnswer">Submit Answer</div> -->
-                
-        </form>
-    
-      
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="index.js"></script> 
-      </main>
-   </body>
+            <form id="nextQuestionForm">
+              <button type="submit" class="nextButton">Next</button>
+            </form>
+      </div>
+      <div id="totalEndScore" class="hidden">
+          <form id="quizRestartForm">
+              <button type="submit" class="restartButton" >Restart Quiz</button>
+            </form>
+        <p>Total Score:<span id="totalScoreNum">0</span></p>
+      </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+  </main>
+</body>
 
 </html>
