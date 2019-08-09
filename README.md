@@ -1,3 +1,3 @@
-# gotta-be-kitten-me-quiz
-Quiz app assignment for Bloc Web Development Bootcamp
-test commit
+https://mebs84.github.io/gotta-be-kitten-me-quiz/
+
+Quiz App Assignment
